@@ -267,6 +267,10 @@ dialog button:focus {
   color: var(--black);
 }
 
+dialog button:active {
+  transform: scale(0.95);
+}
+
 
 /* Footer */
 
@@ -278,7 +282,7 @@ footer {
   margin-top: 2rem;
 }
 
-/* Animations */
+/* Animations (AI helped on this, but I adjusted the code accordingly) */
 
 @keyframes fadeIn {
   from {
@@ -288,6 +292,21 @@ footer {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+dialog {
+  animation: dialogPop 0.25s ease;
+}
+
+@keyframes dialogPop {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
