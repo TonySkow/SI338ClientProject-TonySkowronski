@@ -71,7 +71,7 @@ dd {
 }
 
 img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   border-radius: 12px;
   object-fit: cover;
@@ -225,7 +225,7 @@ dialog {
   border: none;
   border-radius: 12px;
   padding: 1.5rem;
-  max-width: 90%;
+  width: 90%;
   background: var(--dark-blue);
 }
 
