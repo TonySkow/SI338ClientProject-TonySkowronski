@@ -1,5 +1,5 @@
 /* AI USAGE: I used AI to help me with some of the animation code and with the color variables to make it cleaner,
-I also got help on just some random things and good property ideas to make it look nice (such as clamp)
+I also got help on just some random things and good property ideas to make it look nice (such as clamp) */
 
 /* Colors (AI help on the color codes) */
 
@@ -18,6 +18,14 @@ I also got help on just some random things and good property ideas to make it lo
     --white: #111;
     --light-gray: #1a1a1a;
   }
+}
+
+/* Missing class to handle missing images */
+.missing {
+  border: 3px dashed orange;
+  background-color: #fff3cd;
+  min-height: 100px;
+  display: block;
 }
 
 /* Global Styles */
@@ -41,7 +49,6 @@ h1 {
 h2 {
   font-size: clamp(1.3rem, 3vw, 1.8rem);
   margin-top: 2rem;
-  font-size: 1.6rem;
   text-align: center;
   color: #0b3d91;
   background-color: #cfe8ff;
@@ -85,7 +92,7 @@ header {
   padding: 1rem;
   text-align: center;
   top: 0;
-  z-index: 1;
+  z-index: 100;
 }
 
 .mainheader {
@@ -253,8 +260,13 @@ dialog h3 {
   padding-bottom: 4px;
 }
 
-dialog p, a {
+dialog p, dialog a {
   color: white
+}
+
+dialog p {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
 }
 
 dialog a:hover {
@@ -269,6 +281,15 @@ dialog button:focus {
 
 dialog button:active {
   transform: scale(0.95);
+}
+
+.athlete-card::after {
+  content: "Tap to view details →";
+  display: block;
+  padding: 0 1rem 0.8rem 1rem;
+  color: var(--sky-blue);
+  font-size: 0.85rem;
+  font-style: italic;
 }
 
 
@@ -325,4 +346,90 @@ button:focus,
 select:focus {
   outline: 3px solid var(--sky-blue);
   outline-offset: 2px;
+}
+
+
+/*Desktop / Tablet Layout (768px+)*/
+@media (min-width: 768px) {
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  #athlete-21615274 {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  #athlete-21615274 header {
+    flex-shrink: 0;
+    width: 200px;
+  }
+
+  #athlete-21615274 img {
+    width: 200px;
+  }
+
+  #race-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  dialog {
+    width: 60%;
+    max-width: 700px;
+  }
+
+  form fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+/* Wide Desktop media query(1024px+) */
+@media (min-width: 1024px) {
+
+  #race-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+/* CSS for stat summary section (GENAI help) */
+#stat-summary {
+  display: flex;
+  justify-content: space-around;
+  background: var(--dark-blue);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0 1rem 1rem 1rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--white);
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--sky-blue);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+#race-count {
+  text-align: center;
+  font-weight: bold;
+  color: var(--dark-blue);
+  margin: 0 1rem 0.5rem 1rem;
 }
