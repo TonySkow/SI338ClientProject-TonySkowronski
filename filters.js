@@ -1,4 +1,31 @@
-// NOTE: Used AI and Google to help write the code in this file.
+/* Used GENAI to help me write this function */
+
+function updateStats() {
+  const allCards = document.querySelectorAll("#race-cards article");
+  const visibleCards = [...allCards].filter(c => c.style.display !== "none");
+
+  // Race count
+  document.getElementById("race-count").textContent =
+    `Showing ${visibleCards.length} of ${allCards.length} races`;
+
+  // Best placement
+  const bestPlace = Math.min(...visibleCards.map(c => parseInt(c.dataset.place)));
+  document.getElementById("best-place").textContent = bestPlace;
+
+  // Average time
+  const times = visibleCards
+    .map(c => parseFloat(c.dataset.timeSeconds))
+    .filter(t => !isNaN(t));
+  const avgSeconds = times.reduce((a, b) => a + b, 0) / times.length;
+  const mins = Math.floor(avgSeconds / 60);
+  const secs = (avgSeconds % 60).toFixed(1).padStart(4, "0");
+  document.getElementById("avg-time").textContent = `${mins}:${secs}`;
+
+  // Total
+  document.getElementById("total-races").textContent = visibleCards.length;
+}
+
+/* NOTE: Used AI and Google to help write the code in this file. */
 function parseDateFromDataset(article) {
   const raw = article.dataset.date || "";
   const t = Date.parse(raw);
@@ -69,6 +96,7 @@ function updateURL(grade, sort) {
 document.addEventListener("DOMContentLoaded", () => {
   const { grade, sort } = syncControlsFromURL();
   applyGradeAndSort(grade, sort);
+  updateStats();
 
   const form = document.getElementById("filters");
   if (!form) return;
@@ -80,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateURL(selectedGrade, selectedSort);
     applyGradeAndSort(selectedGrade, selectedSort);
+    updateStats();
   });
 
   form.addEventListener("submit", (e) => e.preventDefault());
